@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-// We will export the connection to the DB, which will be used in ther server.js
+// We will export the connection to the DB, which will be used in the server.js
 module.exports = () => {
   mongoose
-    .connect("mongodb+srv://admin:1DsqqhrE02mEs3Wj@atlascluster.dogkuxg.mongodb.net/test")
-    .then(() => console.log(`CONNECTED`))
-    .catch((err) => console.log(`Cannot connect`, err));
+    .connect(process.env.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Error connecting to MongoDB:', err));
 };
